@@ -1,3 +1,10 @@
+moviemat = data.pivot_table(index ='user_id', 
+              columns ='title', values ='rating') 
+  
+moviemat.head() 
+  
+ratings.sort_values('num of ratings', ascending = False).head(10) 
+
 # taking these 2 movies as example
 starwars_user_ratings = moviemat['Star Wars (1977)'] 
 liarliar_user_ratings = moviemat['Liar Liar (1997)'] 
