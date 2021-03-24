@@ -1,60 +1,49 @@
-import sqlite3
-import time
-import datetime
-import random
+# importing the module
+import pandas as pd
+import csv
+import numpy
+from googlesearch import search
+# taking input from user
+val = input("Enter your command: ")
+#splitting the command to subparts
+K = val.split()
+T = len(K)
 
-conn = sqlite3.connect('Movies.db')
-c = conn.cursor()
+def queryreform():
+  search_name = 'Brooks'
+  with open('tmdb_5000_movies.csv', 'r') as file: 
+    output = re.findall(f'{search_name}.*', file.read())
+  for row in output:
+    items = row.split(',')
+    print(items[0], '>>' ,items[1])
 
-def create_table():
-    c.execute("CREATE TABLE IF NOT EXISTS stuffToPlot(unix REAL, datestamp TEXT, keyword TEXT, value REAL)")
+def similar():
 
 
-def data_entry():
-    c.execute("INSERT INTO stuffToPlot VALUES(1452549219,'2016-01-11 13:53:39','Python',6)")
 
-    conn.commit()
-    c.close()
-    conn.close()
 
-def dynamic_data_entry():
+def searchit():
+  from googlesearch import search
 
-    unix = int(time.time())
-    date = str(datetime.datetime.fromtimestamp(unix).strftime('%Y-%m-%d %H:%M:%S'))
-    keyword = 'Python'
-    value = random.randrange(0,10)
+  for i in search(query, tld="co.in", num=1, stop=10, pause=2):
+    print(i)
 
-    c.execute("INSERT INTO stuffToPlot (unix, datestamp, keyword, value) VALUES (?, ?, ?, ?)",
-          (unix, date, keyword, value))
+#splitting the cases based on command length
 
-    conn.commit()
-    time.sleep(1)
-
-def read_from_db():
-    c.execute('SELECT * FROM stuffToPlot')
-    data = c.fetchall()
-    print(data)
-    for row in data:
-        print(row)
-
-    c.execute('SELECT * FROM stuffToPlot WHERE value = 3')
-    data = c.fetchall()
-    print(data)
-    for row in data:
-        print(row)
-
-    c.execute('SELECT * FROM stuffToPlot WHERE unix > 1452554972')
-    data = c.fetchall()
-    print(data)
-    for row in data:
-        print(row)
-
-    c.execute('SELECT value, datestamp FROM stuffToPlot WHERE unix > 1452554972')
-    data = c.fetchall()
-    print(data)
-    for row in data:
-        print(row[0])
-
-read_from_db()
-c.close
-conn.close()
+if T == 0:
+  print("Error: no commands!")
+elif T == 1:
+  query = "allintext:"
+  query = query.append(#columns)
+  searchit()
+  print(x)
+elif T == 2:
+  query = "allintext:"
+  query = query.append(#columns)
+  searchit()
+elif T == 3:
+  query = "allintext:"
+  query = query.append(#columns
+  searchit()
+else:
+  print("Error: Too many commands!")
